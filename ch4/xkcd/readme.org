@@ -1,0 +1,11 @@
+* xkcd
+оффлайновое хранилище информации о комиксах xkcd из https://xkcd.com
+задание к главе 4 Донован / Керниган - Язык програмирования GO 
+* зависимости 
+- github.com/mattn/go-sqlite3 
+  для хранения информации о комиксах используется sqlite3 
+- github.com/gosuri/uiprogress
+  прогресс бар для загрузки обновлений
+- BoltDb
+  - bolter - cli viewer (go get -u github.com/hasit/bolter)
+  - bbolt - bolt db (go get go.etcd.io/bbolt/...)
