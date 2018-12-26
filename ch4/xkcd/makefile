@@ -16,4 +16,4 @@ build: clean
 
 .PHONY: clean
 clean:
-	@if [ -e ${BIN} ]; then rm -f ./bin/${BIN}; fi
+	@if [ -e ./bin/${BIN} ]; then rm -f ./bin/${BIN}; fi

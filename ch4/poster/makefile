@@ -13,8 +13,8 @@ LDFLAGS := -ldflags="-X main.version=${RELEASE} -X main.buildtime=${BUILD_TIME} 
 
 .PHONY: build
 build: clean
-	@go build -v ${LDFLAGS} -o ${BIN} 
+	@go build -v ${LDFLAGS} -o ./bin/${BIN} 
 
 .PHONY: clean
 clean:
-	@if [ -e ${BIN} ]; then rm -f ${BIN}; fi
+	@if [ -e ./bin/${BIN} ]; then rm -f ./bin/${BIN}; fi
