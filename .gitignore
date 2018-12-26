@@ -1,0 +1,30 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# any created databases & etc.
+*.db
+*.sql3
+
+# internal notes
+private.org
+
+# emacs unsaved files
+.#*
+
+# not ready folder
+ch1/*
+ch2/*
+ch3/*
+cmd/*
+example/*
+

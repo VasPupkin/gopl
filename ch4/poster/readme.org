@@ -1,0 +1,19 @@
+* omdbapi.com
+** request parameters
+By ID or Title
+|------------+-----------+------------------------+---------------+----------------------------------------|
+| Parameter  | Required  | Valid Options          | Default value | Description                            |
+|------------+-----------+------------------------+---------------+----------------------------------------|
+| i 	 | Optional* |                        | <empty>       | A valid IMDb ID (e.g. tt1285016)       |
+| t 	 | Optional* |                        | <empty>       | Movie title to search for.             |
+| type       | No        | movie, series, episode | <empty>       | Type of result to return.              |
+| y 	 | No        |                        | <empty>       | Year of release.                       |
+| plot       | No        | short, full            | short         | Return short or full plot.             |
+| r 	 | No        | json, xml              | json          | The data type to return.               |
+| callback   | No        |                        | <empty>       | JSONP callback name.                   |
+| v 	 | No        |                        | 1             | API version (reserved for future use). |
+|------------+-----------+------------------------+---------------+----------------------------------------|
+*Please note while both "i" and "t" are optional at least one argument is required.
+** Sample request
+~http://www.omdbapi.com/?apikey=[apiKey]&t=lock%20stock~ 
+
