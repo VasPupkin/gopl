@@ -1,3 +1,6 @@
+// The poster - command line utility, that search by name a movie poster in Open Movie Database, download it and show in external program.
+// Linux only.
+// task 4.13.
 package main
 
 import (

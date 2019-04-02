@@ -1,3 +1,4 @@
+// The xkcd - command line utlity, for create, search and show information about comic from xkcd.com
 package main
 
 import (

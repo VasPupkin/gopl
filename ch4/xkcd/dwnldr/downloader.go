@@ -1,4 +1,4 @@
-// download and update xkcd comic database
+//Package dwnldr - download and update xkcd comic database
 package dwnldr
 
 import (
@@ -17,15 +17,25 @@ const (
 	srchStr = "Permanent link to this comic: https://xkcd.com/"
 )
 
+// Comic structure about comic
 type Comic struct {
-	Num           int
-	Date          time.Time
-	Title         string `json:"safe_title"`
+	//Num is comic number from xkcd.com,
+	//in recieved json fild name "num"
+	Num int
+	//Conversion of sum three of fields: "day",
+	// "month" and "year"
+	Date time.Time
+	// Recieved as "safe_title"
+	Title string `json:"safe_title"`
+	// Resieved as "transcrrept"
 	Transcription string `json:"transcript"`
-	ImageURL      string `json:"img"`
-	AltName       string `json:"alt"`
+	// Resieved as "img", images are not downloaded
+	ImageURL string `json:"img"`
+	// Recieved as "alt", may be empty
+	AltName string `json:"alt"`
 }
 
+// FindLastComic - request from web number of last published comic
 func FindLastComic() (num int) {
 	var permLink string
 	resp, err := http.Get(url)
@@ -59,6 +69,7 @@ func FindLastComic() (num int) {
 	return
 }
 
+// GetComic info - downloads information aboit comic from web
 func GetComicInfo(num int) *Comic {
 	type date struct {
 		Day   string

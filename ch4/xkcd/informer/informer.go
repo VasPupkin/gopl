@@ -1,3 +1,4 @@
+//Package informer - realize simple command line interface for user
 package informer
 
 import (
@@ -18,6 +19,7 @@ var (
 	lf  = []byte{10}
 )
 
+//MainMenu - realize main menu loop.
 func MainMenu(num int) {
 	for {
 		fmt.Printf("Input comic number [1 - %d] or [Q/q] for exit:", num)

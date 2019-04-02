@@ -1,3 +1,8 @@
+// Package omdbapi - realizes API to Open Movie Database, search and download movie poster
+// if available by movie name and year (optional).
+// needs own api key from https://omdbapi.com
+// key provided by "hard code" as variable apiKey, variable will be at build time set.
+// Example: go build -X omdbapi.apiKey="api key"
 package omdbapi
 
 import (
@@ -12,17 +17,20 @@ import (
 
 var apiKey = "" // from make file
 
+// Movie - movie information
 type Movie struct {
 	Title  string
 	Year   string
 	Poster string
 }
 
+// PosterType - poster file description, Type - is file type, extension as string, Image - image contenet
 type PosterImage struct {
 	Type  string
 	Image []byte
 }
 
+// FindMovie - search movie in omdbapi.com by name and year
 func FindMovie(title string, year string) (*Movie, bool) {
 	var req string
 	// prepare request string
@@ -55,6 +63,7 @@ func FindMovie(title string, year string) (*Movie, bool) {
 	return &movie, rslt.Response == "True"
 }
 
+// DownloadPoster - download poster image from web and return PosterImage structure.
 func (m *Movie) DownloadPoster() (*PosterImage, bool) {
 	pi := new(PosterImage)
 	pi.Type = filepath.Ext(m.Poster)

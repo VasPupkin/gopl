@@ -8,4 +8,4 @@ comics.
 - https://github.com/gosuri/uiprogress
   progress bar to inform about the update download process
 - https://github.com/etcd-io/bbolt
-  In the second version, BoltDB (bbolt) is used to store information.
+  In the second version, BoltDB (bbolt) is used to store information.й

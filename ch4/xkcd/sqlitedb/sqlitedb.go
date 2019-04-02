@@ -1,3 +1,4 @@
+//Package sqlitedb - provide interface to sqlite database for xkcd utility
 package sqlitedb
 
 import (
@@ -19,6 +20,7 @@ type Db struct {
 	db *sql.DB
 }
 
+// SaveComic - saves information about comic into DB
 func (d *Db) SaveComic(Num int, Date time.Time, Title, Transcription, ImageURL, AltName []byte) error {
 	tx, err := d.db.Begin()
 	if err != nil {
@@ -48,6 +50,7 @@ func (d *Db) GetComicInfo(num int) (date time.Time, title, transcription, imageU
 	return
 }
 
+// OpenDataBase - opens sqlite database (database name is hardcoded)
 func OpenDataBase() *Db {
 	if _, err := os.Stat(dbFile); err != nil {
 		if os.IsNotExist(err) {
@@ -63,6 +66,7 @@ func OpenDataBase() *Db {
 	return d
 }
 
+// CloseDataBase - closes opened DB
 func (d *Db) CloseDataBase() {
 	err := d.db.Close()
 	if err != nil {
@@ -70,6 +74,7 @@ func (d *Db) CloseDataBase() {
 	}
 }
 
+// GetLastNum - return last number of comic available in DB
 func (d *Db) GetLastNum() int {
 	cstmt := `SELECT MAX(Num) AS max FROM main`
 	var num int
@@ -80,6 +85,7 @@ func (d *Db) GetLastNum() int {
 	return num
 }
 
+// CheckComicExist - check comic by number
 func (d *Db) CheckComicExists(num int) bool {
 	var count int
 	cstmt := `SELECT COUNT (Num) AS count FROM main WHERE Num = ?`

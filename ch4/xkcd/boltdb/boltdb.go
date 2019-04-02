@@ -1,3 +1,4 @@
+// Package boltdb - provide interface to bolt database for xkcd utility
 package boltdb
 
 import (
@@ -17,6 +18,7 @@ type Db struct {
 	db *bolt.DB
 }
 
+// OpenDataBase - opens boltDB (database name is hardcoded)
 func OpenDataBase() *Db {
 	d := new(Db)
 	//opens xkcb.db data file in current directory
@@ -30,6 +32,7 @@ func OpenDataBase() *Db {
 	return d
 }
 
+// CloseDataBase - closes opened DB
 func (d *Db) CloseDataBase() {
 	err := d.db.Close()
 	if err != nil {
@@ -37,6 +40,7 @@ func (d *Db) CloseDataBase() {
 	}
 }
 
+// SaveComic - saves information about comic into DB
 func (d *Db) SaveComic(Num int, Date time.Time, Title, Transcription, ImageURL, AltName []byte) (err error) {
 	n := []byte(strconv.Itoa(Num)) // single calculation
 	// begin transactions
@@ -94,6 +98,7 @@ func (d *Db) SaveComic(Num int, Date time.Time, Title, Transcription, ImageURL, 
 	return nil
 }
 
+// GetComicInfo - retrieves comoc information from DB
 func (d *Db) GetComicInfo(num int) (date time.Time, title, transcription, imageURL, altName []byte) {
 	err := d.db.View(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte(strconv.Itoa(num)))
@@ -116,6 +121,7 @@ func (d *Db) GetComicInfo(num int) (date time.Time, title, transcription, imageU
 	return
 }
 
+// GetLastNum - return last number of comic available in DB
 func (d *Db) GetLastNum() (last int) {
 	tx, err := d.db.Begin(false)
 	if err != nil {
@@ -133,6 +139,7 @@ func (d *Db) GetLastNum() (last int) {
 	return
 }
 
+// CheckComicExist - check comic by number
 func (d *Db) CheckComicExists(num int) (exist bool) {
 	d.db.View(func(tx *bolt.Tx) error {
 		b := tx.Bucket([]byte(strconv.Itoa(num)))
